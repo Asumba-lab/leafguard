@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeafGuard - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-5">
+            <div class="logo-container">
+                <i class="fas fa-leaf fa-3x mb-3 text-success"></i>
+                <h1 class="display-4">LeafGuard</h1>
+                <p class="lead mb-4">AI-Powered Crop Disease Detection for Sustainable Agriculture</p>
+            </div>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Analysis Results</h5>
+                        <div class="alert alert-info">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-virus text-primary fa-2x me-3"></i>
+                                <div>
+                                    <h4 class="mb-1">Disease Identified: {{ disease }}</h4>
+                                    <p class="mb-0">Based on our AI analysis, this is the most likely disease affecting your plant.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-cloud-rain text-warning fa-2x me-3"></i>
+                                <div>
+                                    <h4 class="mb-1">Environmental Risk: {{ risk }}</h4>
+                                    <p class="mb-0">Based on current weather conditions in your area.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="text-center">
+                                <a href="/" class="btn btn-primary btn-lg btn-analyze">
+                                    <i class="fas fa-leaf me-2"></i>Analyze Another Image
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add loading state to the button when clicked
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('.btn-analyze');
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span class="loading"></span> Redirecting...';
+                    this.classList.add('loading-state');
+                    
+                    // Redirect with error handling
+                    try {
+                        window.location.href = '/';
+                    } catch (error) {
+                        console.error('Navigation error:', error);
+                        this.innerHTML = originalText;
+                        this.classList.remove('loading-state');
+                        alert('Error navigating. Please try again.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
