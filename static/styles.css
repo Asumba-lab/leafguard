@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 
 .container {
@@ -79,20 +80,48 @@ h1 {
 }
 
 /* Button Styles */
-.btn-primary {
+.btn-analyze {
     background: linear-gradient(135deg, var(--primary-color), #1a252f);
     border: none;
     border-radius: 25px;
     padding: 0.75rem 2rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    color: white;
     box-shadow: var(--card-shadow);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.btn-primary:hover {
+.btn-analyze:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     background: linear-gradient(135deg, #1a252f, #0a1217);
+}
+
+.btn-analyze::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(76, 175, 80, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.btn-analyze:hover::after {
+    left: 100%;
 }
 
 /* Form Styles */
@@ -118,7 +147,7 @@ h1 {
         font-size: 1.1rem;
     }
     
-    .btn-primary {
+    .btn-analyze {
         padding: 0.75rem 1.5rem;
     }
 }
@@ -126,8 +155,8 @@ h1 {
 /* Loading Animation */
 .loading {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: 3px solid rgba(76, 175, 80, 0.3);
     border-radius: 50%;
     border-top: 3px solid var(--accent-color);
@@ -147,33 +176,6 @@ h1 {
     cursor: not-allowed;
 }
 
-/* Navigation Button */
-.btn-analyze {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-analyze::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(76, 175, 80, 0.2),
-        transparent
-    );
-    transition: 0.5s;
-}
-
-.btn-analyze:hover::after {
-    left: 100%;
-}
-
 /* Image Upload Preview */
 .image-preview {
     position: relative;
@@ -183,6 +185,10 @@ h1 {
     margin-bottom: 1rem;
     overflow: hidden;
     box-shadow: var(--card-shadow);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .image-preview img {

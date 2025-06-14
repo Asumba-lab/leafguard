@@ -47,5 +47,10 @@ ehthumbs.db
 Thumbs.db
 
 # Model weights
+plant_disease_model.pth
+
+# Environment variables
+.env
+
 # Comment this line if you want to commit the model weights
 # plant_disease_model.pth
